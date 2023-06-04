@@ -18,8 +18,12 @@ def filter_vacancies(vacancies, filter_words, platform):
 
 
 def sort_vacancies(vacancies):
-    pass
+    sorted_employees = sorted(vacancies, key=lambda x: x.salary_to if x.salary_to is not None else float('inf'), reverse=True)
+    return sorted_employees
 
 
 def get_top_vacancies(vacancies, top_n):
-    pass
+    if len(vacancies) < top_n:
+        return vacancies
+    return vacancies[:top_n]
+

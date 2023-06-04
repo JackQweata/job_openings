@@ -1,6 +1,7 @@
 from module.screening_vacancies import filter_vacancies, sort_vacancies, get_top_vacancies
 from src.bulletin_board_API import HeadHunterAPI, SuperJobAPI
 from src.file_saver import JSONSaver
+from src.printing_information import print_vacancies
 
 hh_api = HeadHunterAPI()
 superjob_api = SuperJobAPI()
