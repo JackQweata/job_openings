@@ -8,6 +8,8 @@ class JSONSaver(DatabaseOfVacancies):
         self.__patch = 'file/vacancy.json'
 
     def add_vacancy(self, vacancy):
+        """ Добавляет вакансию в json """
+
         all_entries = self.read_file_json()
         record_ids = [item.get('id') for item in all_entries]
 
@@ -18,6 +20,9 @@ class JSONSaver(DatabaseOfVacancies):
         self.write_file_json(all_entries)
 
     def get_vacancies_by_salary(self, salary):
+        """ Получает вакансию по зп форма записи должна быть 1000 - 10000 """
+
+        # Поиск зп в строке
         salary = re.findall(r'\d+', salary)
         salary = [int(i) for i in salary]
         if len(salary) >= 3:
@@ -35,6 +40,8 @@ class JSONSaver(DatabaseOfVacancies):
                     return vacancy
 
     def delete_vacancy(self, vacancy):
+        """ Удаляет вакансию из json """
+
         all_entries = self.read_file_json()
         ids = [item['id'] for item in all_entries]
         vacancy_index = ids.index(vacancy.id)
@@ -43,12 +50,16 @@ class JSONSaver(DatabaseOfVacancies):
 
     @staticmethod
     def read_file_json():
+        """ Читает json """
+
         with open('file/vacancy.json', 'r', encoding='utf-8') as file:
             all_entries = json.load(file)
         return all_entries
 
     @staticmethod
     def write_file_json(all_entries):
+        """ Записывает в json """
+
         with open('file/vacancy.json', 'w', encoding='utf-8') as file:
             json.dump(all_entries, file, indent=4)
 

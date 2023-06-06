@@ -9,8 +9,11 @@ superjob_api = SuperJobAPI()
 # Получение вакансий с разных платформ
 hh_vacancies = hh_api.get_vacancies("Python")
 superjob_vacancies = superjob_api.get_vacancies("Python")
+
+# Слияние всех вакансий в один массив
 hh_vacancies.extend(superjob_vacancies)
 
+# Добавляет вакансии в json
 for vacancy in hh_vacancies:
     json_saver = JSONSaver()
     json_saver.add_vacancy(vacancy)
@@ -19,6 +22,8 @@ for vacancy in hh_vacancies:
 
 
 def user_interaction():
+    """ Взаимодействие с пользователем """
+
     filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
     platforms = int(input("Выберите платформу:\n 1) HeadHunter\n 2) SuperJob\n 3) Все\n"))
     top_n = int(input("Введите количество вакансий для вывода в топ N: "))

@@ -9,6 +9,8 @@ class HeadHunterAPI(VacancyAPI):
         super().__init__()
 
     def get_vacancies(self, text):
+        """ Получение вакансий HeadHunter через API, возвращает массив экземпляров класса  Vacancy"""
+
         try:
             vacancies_api = requests.get(f'https://api.hh.ru/vacancies/?text={text}', headers=self.headers.generate())
             vacancies_api = vacancies_api.json().get('items')
@@ -37,6 +39,8 @@ class SuperJobAPI(VacancyAPI):
         self.__TOKEN = os.getenv('KEY_SUPER_JOB')
 
     def get_vacancies(self, text):
+        """ Получение вакансий SuperJob через API, возвращает массив экземпляров класса  Vacancy"""
+
         header = self.headers.generate()
         header['X-Api-App-Id'] = self.__TOKEN
         try:
