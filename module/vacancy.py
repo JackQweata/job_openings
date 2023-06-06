@@ -10,6 +10,8 @@ class Vacancy:
         self.__salary_to = salary_to
 
     def get_dict_vacancy(self):
+        """ Корректный для заполнения в json  """
+
         dict_vacancy = {
             "id": self.id,
             "platform": self.platform,
