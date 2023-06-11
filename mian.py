@@ -11,8 +11,8 @@ def user_interaction():
     platforms = int(input("Выберите платформу:\n 1) HeadHunter\n 2) SuperJob\n 3) Все\n"))
     top_n = int(input("Введите количество вакансий для вывода в топ N: "))
     # Парсим данные
-    vacancies = run_parser(search_query)
-    filtered_vacancies = filter_vacancies(vacancies, filter_words, platforms)
+    vacancies = run_parser(search_query, platforms)
+    filtered_vacancies = filter_vacancies(vacancies, filter_words)
 
     if not filtered_vacancies:
         print("Нет вакансий, соответствующих заданным критериям.")

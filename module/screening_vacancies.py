@@ -1,20 +1,16 @@
-def filter_vacancies(vacancies, filter_words, platform):
+def filter_vacancies(vacancies, filter_words):
     """ Фильтрует вакансии по ключевым словам пользователя и площадки """
 
-    platforms = ["HeadHunter", "SuperJob"]
-    filter_platform = None if len(platforms) <= platform else platforms[platform-1]
     filtered_vacancies = []
+
+    if not filter_words:
+        return vacancies
 
     for vacancy in vacancies:
         for word in filter_words:
             if vacancy.title.find(word) == -1:
                 continue
-
-            elif not filter_platform:
-                filtered_vacancies.append(vacancy)
-
-            elif vacancy.platform == filter_platform:
-                filtered_vacancies.append(vacancy)
+            filtered_vacancies.append(vacancy)
 
     return filtered_vacancies
 
@@ -35,4 +31,3 @@ def get_top_vacancies(vacancies, top_n):
     if len(vacancies) < top_n:
         return vacancies
     return vacancies[:top_n]
-
